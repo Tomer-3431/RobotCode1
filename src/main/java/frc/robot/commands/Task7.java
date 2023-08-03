@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Chassis;
 
-public class RobotMoveAndStayStraight extends CommandBase {
+public class Task7 extends CommandBase {
   PigeonIMU gyro = new PigeonIMU(2);
   double originalAngle = gyro.getFusedHeading();
   Chassis chassis;
   
   /** Creates a new robotMoveAndStayStraight. */
-  public RobotMoveAndStayStraight(Chassis chassis) {
+  public Task7(Chassis chassis) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(chassis);
     this.chassis = chassis;

@@ -6,10 +6,10 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.MoveNumOfMeters;
-import frc.robot.commands.TurnRobot;
-import frc.robot.commands.RobotMoveAndStayStraight;
-import frc.robot.commands.robotStayAngle;
+import frc.robot.commands.Task2;
+import frc.robot.commands.Task3;
+import frc.robot.commands.Task7;
+import frc.robot.commands.Task4;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -27,7 +27,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private Chassis chassis = new Chassis();
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  robotStayAngle robotStayAngle = new robotStayAngle(chassis,90);
+  Task4 robotStayAngle = new Task4(chassis,90);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -35,6 +35,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    // here the second part of task 6
     chassis.setDefaultCommand(robotStayAngle);
     // Configure the trigger bindings
     configureBindings();
@@ -56,7 +57,7 @@ public class RobotContainer {
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().onTrue((new RobotMoveAndStayStraight(chassis)));
+    m_driverController.b().onTrue((new Task7(chassis)));
   }
 
   /**
@@ -65,7 +66,8 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    SequentialCommandGroup moveTurnLeft = new SequentialCommandGroup(new MoveNumOfMeters(chassis, 1), new TurnRobot(chassis, 90));
+    // here task 5 and the first part of task 6
+    SequentialCommandGroup moveTurnLeft = new SequentialCommandGroup(new Task2(chassis, 1), new Task3(chassis, 90));
     SequentialCommandGroup square = new SequentialCommandGroup(moveTurnLeft,moveTurnLeft,moveTurnLeft,moveTurnLeft);
     // An example command will be run in autonomous
     return square;

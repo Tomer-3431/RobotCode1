@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Chassis;
 
-public class robotStayAngle extends CommandBase {
+public class Task4 extends CommandBase {
   PigeonIMU gyro = new PigeonIMU(2);
   double originalAngle = gyro.getFusedHeading();
   Chassis chassis;
   double angle;
 
   /** Creates a new robotStayAngle. */
-  public robotStayAngle(Chassis chassis, double angle) {
+  public Task4(Chassis chassis, double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(chassis);
     this.angle = angle;

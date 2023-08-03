@@ -4,23 +4,19 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.sensors.PigeonIMU;
-
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Chassis;
 
-public class TurnRobot extends CommandBase {
-  PigeonIMU gyro = new PigeonIMU(2);
-  double originalAngle = gyro.getFusedHeading();
+public class Task2 extends CommandBase {
+  double meter;
   Chassis chassis;
-  double angle;
-
-  /** Creates a new TurnRobot. */
-  public TurnRobot(Chassis chassis, double angle) {
+  /** Creates a new MoveNumOfMeters. */
+  public Task2(Chassis chassis, double meter) {
     addRequirements(chassis);
-    this.angle = angle;
+    this.meter = meter;
     this.chassis = chassis;
   }
 
@@ -28,7 +24,7 @@ public class TurnRobot extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putData(this);
-    chassis.setPower(-0.1, 0.1);
+    chassis.setPower(0.5,0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,22 +34,19 @@ public class TurnRobot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {chassis.setPower(0, 0);}
-  
-  public double getAngle() {return gyro.getFusedHeading(); }
-  public double getOriginalAngle() {return originalAngle; }
+
+  public double getError() {return chassis.motorLB.getSelectedSensorPosition()-Constants.countsToMeter*meter; }
   
   @Override
   public void initSendable(SendableBuilder builder) {
       // TODO Auto-generated method stub
-      super.initSendable(builder);
-      builder.addDoubleProperty("angle", this::getAngle, null);
-      builder.addDoubleProperty("original angle", this::getOriginalAngle, null);
+      builder.addDoubleProperty("Error", this::getError, null);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(gyro.getFusedHeading() < originalAngle+angle){return true;}
-    return false;  
+    while(chassis.motorLB.getSelectedSensorPosition() != Constants.countsToMeter*meter){}
+    return true;
   }
 }
