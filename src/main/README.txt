@@ -1,4 +1,5 @@
-Hi this is each task from the presentention
+Hi this is each task from the presentention:
+Sorry if the links does not work
 
 task 1 is in Constants
 https://github.com/Tomer-3431/RobotCode1/blob/43c143e7fff8ff587179b1adeec59a9fe800f866/src/main/java/frc/robot/Constants.java#L18
@@ -21,9 +22,9 @@ https://github.com/Tomer-3431/RobotCode1/blob/43c143e7fff8ff587179b1adeec59a9fe8
 task 7 is the entrie of Task7
 https://github.com/Tomer-3431/RobotCode1/blob/43c143e7fff8ff587179b1adeec59a9fe800f866/src/main/java/frc/robot/commands/Task7.java
 
-I hope the code works I didn't have time to test on the robot so I hope it works
+I hope the code works and you like them.
+I didn't have time to test on the robot so I hope it works
 
-AKA:
-I hope the links works  too
-
-if not i blame tohna
+AKA:{
+    if not i blame tohna;
+    }
